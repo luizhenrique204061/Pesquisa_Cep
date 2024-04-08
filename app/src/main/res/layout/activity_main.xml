@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/container_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/buscar_pelo_cep"
+                android:layout_width="wrap_content"
+                style="@style/COR_DO_TEXTO"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/green"
+                android:text="Buscar Pelo Cep"
+                />
+
+            <RadioButton
+                android:id="@+id/buscar_pelo_endereco"
+                android:layout_width="wrap_content"
+                style="@style/COR_DO_TEXTO"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:buttonTint="@color/green"
+                android:text="Buscar Pelo Endereço"
+                />
+
+
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_fragmento_buscar_pelo_cep"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_menu" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_fragmento_buscar_pelo_endereco"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/container_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
