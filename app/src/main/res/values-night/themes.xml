@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Cep" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorPrimaryVariant">@color/green</item>
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+    </style>
+
+    <style name="BACKGROUND">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="COR_DO_TEXTO">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CARDVIEWBACKGROUND">
+
+        <item name="cardBackgroundColor">@color/black</item>
+
+    </style>
+</resources>
