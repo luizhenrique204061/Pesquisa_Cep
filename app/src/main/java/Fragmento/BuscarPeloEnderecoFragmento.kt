@@ -53,8 +53,6 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
 
 
-
-
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://viacep.com.br/")

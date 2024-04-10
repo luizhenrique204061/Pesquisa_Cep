@@ -14,6 +14,21 @@
         <item name="android:background">@color/black</item>
     </style>
 
+    <style name="backgroundView">
+        <item name="android:background">@color/white</item>
+
+    </style>
+
+    <style name="corDoTextoView">
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="corDoTextoBotao">
+        <item name="android:textColor">@color/white</item>
+
+    </style>
+
     <style name="COR_DO_TEXTO">
         <item name="android:textColor">@color/white</item>
     </style>

@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         renderizarFragmento(R.id.container_fragmento_buscar_pelo_cep, BuscarPeloCepFragmento())
 
-        teste()
+
         binding.buscarPeloCep.isChecked = true
 
         binding.buscarPeloEndereco.setOnClickListener {
@@ -45,7 +45,4 @@ class MainActivity : AppCompatActivity() {
         transicaoFragmento.commit()
     }
 
-    fun teste() {
-
-    }
 }

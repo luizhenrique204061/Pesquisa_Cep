@@ -136,14 +136,20 @@ class BuscarPeloCepFragmento : Fragment() {
 
 
 
-
-
-
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://viacep.com.br/")
             .build()
             .create(Api::class.java)
+
+        binding.botaoLimpar.setOnClickListener {
+            binding.editCep.setText("")
+            binding.editLogradouro.setText("")
+            binding.editCidade.setText("")
+            binding.editEstado.setText("")
+            binding.editBairro.setText("")
+            binding.editDdd.setText("")
+        }
 
 
         binding.botaoBuscarCep.setOnClickListener {

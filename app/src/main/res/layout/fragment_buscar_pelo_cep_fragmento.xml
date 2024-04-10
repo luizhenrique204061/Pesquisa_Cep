@@ -25,10 +25,10 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_cep"
-                android:hint="Cep"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Cep"
                 android:inputType="number"
                 android:maxLength="8" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +115,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_ddd"
                 android:layout_width="match_parent"
-                android:layout_height="61dp"
+                android:layout_height="wrap_content"
                 android:focusable="false"
                 android:gravity="center"
                 android:hint="DDD"
@@ -143,6 +143,22 @@
                 android:maxLength="2" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/botao_limpar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/botao_transparente"
+            android:padding="15dp"
+            android:text="Limpar"
+            android:textAllCaps="false"
+            style="@style/corDoTextoBotao"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_cidade" />
+
         <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adview"
             android:layout_width="wrap_content"
@@ -157,7 +173,7 @@
 
         <View
             android:id="@+id/view"
-            style="@style/BACKGROUND"
+            style="@style/backgroundView"
             android:layout_width="200dp"
             android:layout_height="80dp"
             android:layout_marginStart="80dp"
@@ -170,7 +186,7 @@
 
         <TextView
             android:id="@+id/buscando"
-            style="@style/COR_DO_TEXTO"
+            style="@style/corDoTextoView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="90dp"
