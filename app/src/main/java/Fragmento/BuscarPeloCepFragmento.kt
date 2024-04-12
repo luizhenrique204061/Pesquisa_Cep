@@ -136,6 +136,8 @@ class BuscarPeloCepFragmento : Fragment() {
 
 
 
+
+
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://viacep.com.br/")
@@ -196,6 +198,9 @@ class BuscarPeloCepFragmento : Fragment() {
                     }
 
                     override fun onFailure(call: Call<Endereco>, t: Throwable) {
+                        binding.view.visibility = View.GONE
+                        binding.progressbar.visibility = View.GONE
+                        binding.buscando.visibility = View.GONE
                         Toast.makeText(requireContext(), "Erro inesperado", Toast.LENGTH_SHORT)
                             .show()
                     }
