@@ -1,5 +1,7 @@
 package Fragmento
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
@@ -135,7 +138,6 @@ class BuscarPeloCepFragmento : Fragment() {
         }
 
 
-
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://viacep.com.br/")
@@ -165,7 +167,7 @@ class BuscarPeloCepFragmento : Fragment() {
                 binding.buscando.visibility = View.VISIBLE
                 retrofit.buscarPeloCep(cep).enqueue(object : Callback<Endereco> {
                     override fun onResponse(call: Call<Endereco>, response: Response<Endereco>) {
-                        if (response.code() == 200) {
+                        if (response.isSuccessful) {
                             binding.view.visibility = View.GONE
                             binding.progressbar.visibility = View.GONE
                             binding.buscando.visibility = View.GONE
@@ -183,7 +185,6 @@ class BuscarPeloCepFragmento : Fragment() {
                                     .show()
                             } else {
                                 setFormularios(logradouro, bairro, localidade, uf, ddd)
-
                             }
 
                         } else {
@@ -196,14 +197,35 @@ class BuscarPeloCepFragmento : Fragment() {
                     }
 
                     override fun onFailure(call: Call<Endereco>, t: Throwable) {
+                        binding.view.visibility = View.GONE
+                        binding.progressbar.visibility = View.GONE
+                        binding.buscando.visibility = View.GONE
                         Toast.makeText(requireContext(), "Erro inesperado", Toast.LENGTH_SHORT)
                             .show()
                     }
                 })
             }
         }
+        binding.copiar.setOnClickListener {
+            copiarCampos()
+        }
     }
 
+    private fun copiarCampos() {
+        val cepCopia = binding.editCep.text.toString()
+        val logradouroCopia = binding.editLogradouro.text.toString()
+        val bairroCopia = binding.editBairro.text.toString()
+        val cidadeCopia = binding.editCidade.text.toString()
+        val ufCopia = binding.editEstado.text.toString()
+        val dddCopia = binding.editDdd.text.toString()
+
+        val clipboard = requireContext(). getSystemService((Context.CLIPBOARD_SERVICE)) as ClipboardManager
+        val copiar = ClipData.newPlainText(
+            "Endereço", "CEP: ${cepCopia}\nLogradouro: ${logradouroCopia}\nBairro: ${bairroCopia}\nCidade: ${cidadeCopia}\nEstado: ${ufCopia}\nDDD: ${dddCopia}"
+        )
+        clipboard.setPrimaryClip(copiar)
+        Toast.makeText(requireContext(),"Campos copiados com sucesso", Toast.LENGTH_SHORT).show()
+    }
 
     private fun setFormularios(
         logradouro: String,

@@ -52,6 +52,11 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
 
 
+        binding.botaoLimpar.setOnClickListener {
+            binding.logradouro.setText("")
+            binding.cidade.setText("")
+            binding.uf.setText("")
+        }
 
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -110,6 +115,9 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
                             } else {
                                 Log.e("Resposta da API", "Erro ao buscar endereços: ${response.code()}")
+                                binding.view.visibility = View.GONE
+                                binding.progressbar.visibility = View.GONE
+                                binding.buscando.visibility = View.GONE
                                 Toast.makeText(requireContext(), "Erro ao buscar endereços", Toast.LENGTH_SHORT).show()
                             }
                         }
@@ -117,6 +125,9 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
                         override fun onFailure(call: Call<List<ListaEndereco>>, t: Throwable) {
                             Log.e("Resposta da API", "Erro inesperado: ${t.message}")
+                            binding.view.visibility = View.GONE
+                            binding.progressbar.visibility = View.GONE
+                            binding.buscando.visibility = View.GONE
                             Toast.makeText(requireContext(), "Erro inesperado", Toast.LENGTH_SHORT).show()                        }
 
                     })
