@@ -1,5 +1,7 @@
 package Fragmento
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -135,9 +137,6 @@ class BuscarPeloCepFragmento : Fragment() {
         }
 
 
-
-
-
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://viacep.com.br/")
@@ -151,8 +150,10 @@ class BuscarPeloCepFragmento : Fragment() {
             binding.editEstado.setText("")
             binding.editBairro.setText("")
             binding.editDdd.setText("")
+            binding.copiar.visibility = View.GONE
         }
 
+        binding.copiar.visibility = View.GONE
 
         binding.botaoBuscarCep.setOnClickListener {
             val cep = binding.editCep.text.toString()
@@ -185,7 +186,7 @@ class BuscarPeloCepFragmento : Fragment() {
                                     .show()
                             } else {
                                 setFormularios(logradouro, bairro, localidade, uf, ddd)
-
+                                binding.copiar.visibility = View.VISIBLE
                             }
 
                         } else {
@@ -206,9 +207,28 @@ class BuscarPeloCepFragmento : Fragment() {
                     }
                 })
             }
+            binding.copiar.setOnClickListener {
+                copiarCampos()
+            }
         }
     }
 
+    private fun copiarCampos() {
+        val cepCopiar = binding.editCep.text.toString()
+        val logradouroCopiar = binding.editLogradouro.text.toString()
+        val bairroCopiar = binding.editBairro.text.toString()
+        val localidadeCopiar = binding.editCidade.text.toString()
+        val ufCopiar = binding.editEstado.text.toString()
+        val dddCopiar = binding.editDdd.text.toString()
+
+        val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val copiar = ClipData.newPlainText(
+            "Endereço",
+            "Cep: ${cepCopiar}Logradouro: $logradouroCopiar\nBairro: $bairroCopiar\nCidade: $localidadeCopiar\nEstado: $ufCopiar\nDDD: $dddCopiar"
+        )
+        clipboard.setPrimaryClip(copiar)
+        Toast.makeText(requireContext(), "Campos copiados com sucesso", Toast.LENGTH_SHORT).show()
+    }
 
     private fun setFormularios(
         logradouro: String,
