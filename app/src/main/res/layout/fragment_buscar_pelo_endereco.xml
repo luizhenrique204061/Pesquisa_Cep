@@ -15,9 +15,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/logradouro"
-            android:hint="Logradouro"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="Logradouro" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -35,9 +35,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/cidade"
-            android:hint="Cidade"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:hint="Cidade" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -54,13 +54,15 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/uf"
             android:layout_width="100dp"
-            android:maxLength="2"
-            android:inputType="textCapCharacters"
-            android:hint="Estado"
             android:layout_height="wrap_content"
-            android:gravity="center" />
+            android:gravity="center"
+            android:hint="Estado"
+            android:inputType="textCapCharacters"
+            android:maxLength="2" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -93,6 +95,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/botao_limpar"
+        style="@style/corDoTextoBotao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -101,11 +104,9 @@
         android:padding="15dp"
         android:text="Limpar"
         android:textAllCaps="false"
-        style="@style/corDoTextoBotao"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/botao_buscar_cep" />
-
 
 
     <View
