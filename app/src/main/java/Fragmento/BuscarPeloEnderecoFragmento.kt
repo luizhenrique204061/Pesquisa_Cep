@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import com.luiz.cep.Endereco
 import com.luiz.cep.ListaCep
 import com.luiz.cep.ListaEndereco
 import com.luiz.cep.api.ApiBuscaPeloEndereco
@@ -43,12 +42,7 @@ class BuscarPeloEnderecoFragmento : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        MobileAds.initialize(requireContext())
-
-        mAdview = binding.adview
-        val adRequest = AdRequest.Builder().build()
-        Log.i("Meu App", "Antes de carregar o anúncio")
-        mAdview.loadAd(adRequest)
+        carregarAnuncios()
 
 
 
@@ -135,6 +129,16 @@ class BuscarPeloEnderecoFragmento : Fragment() {
         }
 
     }
+
+    private fun carregarAnuncios() {
+        MobileAds.initialize(requireContext())
+
+        mAdview = binding.adview
+        val adRequest = AdRequest.Builder().build()
+        Log.i("Meu App", "Antes de carregar o anúncio")
+        mAdview.loadAd(adRequest)
+    }
+
     private fun recolherTeclado() {
         val inputMethodManager =
             requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
