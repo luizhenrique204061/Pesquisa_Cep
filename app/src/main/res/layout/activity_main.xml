@@ -15,29 +15,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <RadioGroup
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/buscar_pelo_cep"
-                android:layout_width="wrap_content"
                 style="@style/COR_DO_TEXTO"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="@color/green"
-                android:text="Buscar Pelo Cep"
-                />
+                android:text="Buscar Pelo Cep" />
 
             <RadioButton
                 android:id="@+id/buscar_pelo_endereco"
-                android:layout_width="wrap_content"
                 style="@style/COR_DO_TEXTO"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:buttonTint="@color/green"
-                android:text="Buscar Pelo Endereço"
-                />
+                android:text="Buscar Pelo Endereço" />
 
 
         </RadioGroup>

@@ -267,6 +267,46 @@ class BuscarPeloCepFragmento : Fragment() {
 
     private fun buscarNoGoogleMaps() {
         binding.localizacao.setOnClickListener {
+
+
+
+            // Crie a URI para abrir o Google Maps com o CEP
+            val googleMapsUri = Uri.parse("geo:0,0?q=Cep: ${binding.editCep.text.toString()}, ${binding.editLogradouro.text.toString()}, ${binding.editBairro.text.toString()}, ${binding.editCidade.text.toString()}, ${binding.editEstado.text.toString()}")
+            val googleMapsIntent = Intent(Intent.ACTION_VIEW, googleMapsUri)
+            googleMapsIntent.setPackage("com.google.android.apps.maps")
+
+            // Crie a URI para abrir o Waze com base no endereço
+            val wazeUri = Uri.parse("https://waze.com/ul?q=Cep: ${binding.editCep.text.toString()}, ${binding.editLogradouro.text.toString()}, ${binding.editBairro.text.toString()}, ${binding.editCidade.text.toString()}, ${binding.editEstado.text.toString()}")
+            val wazeIntent = Intent(Intent.ACTION_VIEW, wazeUri)
+            wazeIntent.setPackage("com.waze")
+
+            // Crie um intent chooser para apresentar ambas as opções ao usuário
+            val escolherAbertura = Intent.createChooser(googleMapsIntent, "Abrir com")
+
+            // Adicione o Waze como uma opção adicional no intent chooser
+            escolherAbertura.putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(wazeIntent))
+
+            // Verifique se há pelo menos um aplicativo de mapa instalado
+            if (escolherAbertura.resolveActivity(binding.root.context.packageManager) != null) {
+                // Verifica se o contexto é uma instância de Activity
+                if (binding.root.context is Activity) {
+                    binding.root.context.startActivity(escolherAbertura)
+                } else {
+                    // Se o contexto não for uma instância de Activity, adicione a flag FLAG_ACTIVITY_NEW_TASK
+                    escolherAbertura.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    binding.root.context.startActivity(escolherAbertura)
+                }
+            } else {
+                // Se nenhum aplicativo de mapa estiver instalado, mostre uma mensagem de erro
+                Toast.makeText(
+                    binding.root.context.applicationContext,
+                    "Nenhum aplicativo de mapas encontrado",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+
+            /*
             val googleUri = Uri.parse("geo:0,0?q=Cep: ${binding.editCep.text.toString()}, ${binding.editLogradouro.text.toString()}, ${binding.editBairro.text.toString()}, ${binding.editCidade.text.toString()}, ${binding.editEstado.text.toString()}")
             Log.i("Maps", binding.editCep.toString())
             val mapsIntent = Intent(Intent.ACTION_VIEW, googleUri)
@@ -288,6 +328,8 @@ class BuscarPeloCepFragmento : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
+             */
         }
     }
 
