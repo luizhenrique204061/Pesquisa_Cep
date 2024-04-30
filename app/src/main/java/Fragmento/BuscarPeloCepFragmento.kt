@@ -92,6 +92,7 @@ class BuscarPeloCepFragmento : Fragment() {
         }
 
         binding.localizacao.setCompoundDrawablesWithIntrinsicBounds(null, null, desenhavel, null)
+
         carregarAnuncios()
 
 
