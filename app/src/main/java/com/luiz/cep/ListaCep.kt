@@ -21,7 +21,9 @@ class ListaCep : AppCompatActivity() {
         recylcerView.adapter = adapter
 
 
-        val enderecos = intent.getParcelableArrayListExtra<ListaEndereco>("enderecos")
+        //O código abaixo usa o Pacelable, que é uma forma mais complexa de Serailizar
+       // val enderecos = intent.getParcelableArrayListExtra<ListaEndereco>("enderecos")
+        val enderecos = intent.getSerializableExtra("enderecos") as? Array<ListaEndereco>
         if (enderecos != null && enderecos.isNotEmpty()) {
             for (endereco in enderecos) {
                 val lista = Endereco(

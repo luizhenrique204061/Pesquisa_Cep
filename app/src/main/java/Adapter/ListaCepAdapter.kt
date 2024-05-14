@@ -44,12 +44,12 @@ class ListaCepAdapter(
             binding.localizacao.setOnClickListener {
 
                 // Crie a URI para abrir o Google Maps com o CEP
-                val googleMapsUri = Uri.parse("geo:0,0?q=Cep: ${item.cep}")
+                val googleMapsUri = Uri.parse("geo:0,0?q=Cep: ${item.cep}, ${item.logradouro}, ${item.bairro}")
                 val googleMapsIntent = Intent(Intent.ACTION_VIEW, googleMapsUri)
                 googleMapsIntent.setPackage("com.google.android.apps.maps")
 
                 // Crie a URI para abrir o Waze com base no endereço
-                val wazeUri = Uri.parse("https://waze.com/ul?q=Cep: ${item.cep}")
+                val wazeUri = Uri.parse("https://waze.com/ul?q=Cep: ${item.cep}, ${item.logradouro}, ${item.bairro}")
                 val wazeIntent = Intent(Intent.ACTION_VIEW, wazeUri)
                 wazeIntent.setPackage("com.waze")
 

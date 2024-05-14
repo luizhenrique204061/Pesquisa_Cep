@@ -95,7 +95,9 @@ class BuscarPeloEnderecoFragmento : Fragment() {
                                         Log.d("Resposta da API", "UF: ${endereco.uf}")
                                         Log.d("Resposta da API", "DDD: ${endereco.ddd}")
                                         Intent(requireContext(), ListaCep::class.java).apply {
-                                            putParcelableArrayListExtra("enderecos", ArrayList(enderecos))
+                                            //O Código abaixo usar o Parcelable que é uma forma mais complexa de serializar
+                                           // putParcelableArrayListExtra("enderecos", ArrayList(enderecos))
+                                            putExtra("enderecos", enderecos.toTypedArray())
                                             startActivity(this)
                                         }
                                     }

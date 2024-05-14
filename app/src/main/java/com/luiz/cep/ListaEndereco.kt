@@ -2,6 +2,7 @@ package com.luiz.cep
 
 import android.os.Parcel
 import android.os.Parcelable
+import java.io.Serializable
 
 class ListaEndereco (
     val cep: String? = null,
@@ -10,7 +11,9 @@ class ListaEndereco (
     val localidade: String? = null,
     val uf: String? = null,
     val ddd: String? = null
-) : Parcelable {
+) : Serializable
+    /*
+    : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -43,3 +46,5 @@ class ListaEndereco (
         }
     }
 }
+
+     */
