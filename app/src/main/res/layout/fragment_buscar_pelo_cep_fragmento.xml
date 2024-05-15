@@ -28,9 +28,10 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Cep"
+                android:hint="CEP"
                 android:inputType="number"
-                android:maxLength="8" />
+                android:digits="0123456789-"
+                android:maxLength="9" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
