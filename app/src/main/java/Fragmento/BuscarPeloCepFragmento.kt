@@ -93,7 +93,9 @@ class BuscarPeloCepFragmento : Fragment() {
 
         binding.localizacao.setCompoundDrawablesWithIntrinsicBounds(null, null, desenhavel, null)
 
-        carregarAnuncios()
+        carregarAnunciosBanner()
+
+        //carregarAnunciosTelaInteira()
 
 
         val retrofit = Retrofit.Builder()
@@ -175,7 +177,7 @@ class BuscarPeloCepFragmento : Fragment() {
         }
     }
 
-    private fun carregarAnuncios() {
+    private fun carregarAnunciosBanner() {
         MobileAds.initialize(requireContext())
 
 
@@ -185,6 +187,43 @@ class BuscarPeloCepFragmento : Fragment() {
         val adRequest = AdRequest.Builder().build()
         Log.i("Meu App", "Antes de carregar o anúncio")
         mAdview.loadAd(adRequest)
+
+        mAdview.adListener = object : AdListener() {
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                // Code to be executed when an ad request fails.
+                Log.i("Meu App", "Falha ao carregar o anúncio: ${adError.message}")
+            }
+
+            override fun onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                Log.d("Meu App", "Anúncio carregado com sucesso")
+
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+        }
+    }
+
+    private fun carregarAnunciosTelaInteira() {
+
+        val adRequest = AdRequest.Builder().build()
 
         InterstitialAd.load(
             requireContext(),
@@ -230,38 +269,6 @@ class BuscarPeloCepFragmento : Fragment() {
             override fun onAdShowedFullScreenContent() {
                 // Called when ad is shown.
                 Log.d("MainActivity", "Ad showed fullscreen content.")
-            }
-        }
-
-        mAdview.adListener = object : AdListener() {
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                // Code to be executed when an ad request fails.
-                Log.i("Meu App", "Falha ao carregar o anúncio: ${adError.message}")
-            }
-
-            override fun onAdImpression() {
-                // Code to be executed when an impression is recorded
-                // for an ad.
-            }
-
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                Log.d("Meu App", "Anúncio carregado com sucesso")
-
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
             }
         }
     }

@@ -42,7 +42,7 @@ class BuscarPeloEnderecoFragmento : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        carregarAnuncios()
+        carregarAnunciosBanner()
 
 
 
@@ -132,7 +132,7 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
     }
 
-    private fun carregarAnuncios() {
+    private fun carregarAnunciosBanner() {
         MobileAds.initialize(requireContext())
 
         mAdview = binding.adview
