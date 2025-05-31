@@ -42,7 +42,7 @@ class BuscarPeloEnderecoFragmento : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        carregarAnunciosBanner()
+        //carregarAnunciosBanner()
 
 
 
