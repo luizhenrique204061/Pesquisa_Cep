@@ -40,8 +40,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class BuscarPeloCepFragmento : Fragment() {
     private lateinit var binding: FragmentBuscarPeloCepFragmentoBinding
-    lateinit var mAdview: AdView
-    private var mInterstitialAd: InterstitialAd? = null
     private lateinit var appUpdateManager: AppUpdateManager
 
     override fun onCreateView(
@@ -177,102 +175,6 @@ class BuscarPeloCepFragmento : Fragment() {
         }
     }
 
-    private fun carregarAnunciosBanner() {
-        MobileAds.initialize(requireContext())
-
-
-        // Id de teste ca-app-pub-2053981007263513~6280399869
-        //Anúncio do Tipo Banner
-        mAdview = binding.adview
-        val adRequest = AdRequest.Builder().build()
-        Log.i("Meu App", "Antes de carregar o anúncio")
-        mAdview.loadAd(adRequest)
-
-        mAdview.adListener = object : AdListener() {
-            override fun onAdClicked() {
-                // Code to be executed when the user clicks on an ad.
-            }
-
-            override fun onAdClosed() {
-                // Code to be executed when the user is about to return
-                // to the app after tapping on an ad.
-            }
-
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                // Code to be executed when an ad request fails.
-                Log.i("Meu App", "Falha ao carregar o anúncio: ${adError.message}")
-            }
-
-            override fun onAdImpression() {
-                // Code to be executed when an impression is recorded
-                // for an ad.
-            }
-
-            override fun onAdLoaded() {
-                // Code to be executed when an ad finishes loading.
-                Log.d("Meu App", "Anúncio carregado com sucesso")
-
-            }
-
-            override fun onAdOpened() {
-                // Code to be executed when an ad opens an overlay that
-                // covers the screen.
-            }
-        }
-    }
-
-    private fun carregarAnunciosTelaInteira() {
-
-        val adRequest = AdRequest.Builder().build()
-
-        InterstitialAd.load(
-            requireContext(),
-            "ca-app-pub-2053981007263513/9501469318",
-            adRequest,
-            object : InterstitialAdLoadCallback() {
-                override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d("MainActivity", adError?.toString()!!)
-                    mInterstitialAd = null
-                }
-
-                override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.d("MainActivity", "Ad was loaded.")
-                    mInterstitialAd = interstitialAd
-                    mInterstitialAd?.show(requireActivity())
-                }
-            })
-
-
-        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdClicked() {
-                // Called when a click is recorded for an ad.
-                Log.d("MainActivity", "Ad was clicked.")
-            }
-
-            override fun onAdDismissedFullScreenContent() {
-                // Called when ad is dismissed.
-                Log.d("MainActivity", "Ad dismissed fullscreen content.")
-                mInterstitialAd = null
-            }
-
-            override fun onAdFailedToShowFullScreenContent(p0: AdError) {
-                // Called when ad fails to show.
-                Log.e("MainActivity", "Ad failed to show fullscreen content.")
-                mInterstitialAd = null
-            }
-
-            override fun onAdImpression() {
-                // Called when an impression is recorded for an ad.
-                Log.d("MainActivity", "Ad recorded an impression.")
-            }
-
-            override fun onAdShowedFullScreenContent() {
-                // Called when ad is shown.
-                Log.d("MainActivity", "Ad showed fullscreen content.")
-            }
-        }
-    }
-
     private fun buscarNoGoogleMaps() {
         binding.localizacao.setOnClickListener {
 
@@ -312,32 +214,6 @@ class BuscarPeloCepFragmento : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
-
-            /*
-            val googleUri = Uri.parse("geo:0,0?q=Cep: ${binding.editCep.text.toString()}, ${binding.editLogradouro.text.toString()}, ${binding.editBairro.text.toString()}, ${binding.editCidade.text.toString()}, ${binding.editEstado.text.toString()}")
-            Log.i("Maps", binding.editCep.toString())
-            val mapsIntent = Intent(Intent.ACTION_VIEW, googleUri)
-            mapsIntent.setPackage("com.google.android.apps.maps") // Iniciar a abertura no Google Maps
-
-            if (mapsIntent.resolveActivity(binding.root.context.packageManager) != null) {
-                // Verifica se o contexto é uma instância de Activity
-                if (binding.root.context is Activity) {
-                    binding.root.context.startActivity(mapsIntent)
-                } else {
-                    // Se o contexto não for uma instância de Activity, adicione a flag FLAG_ACTIVITY_NEW_TASK
-                    mapsIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    binding.root.context.startActivity(mapsIntent)
-                }
-            } else {
-                Toast.makeText(
-                    binding.root.context.applicationContext,
-                    "Não foi possível abrir o Google Maps",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-             */
         }
     }
 

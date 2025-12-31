@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Cep" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/green</item>
+        <item name="colorPrimary">@color/verde_escuro</item>
+        <item name="colorPrimaryVariant">@color/verde_escuro</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
 
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

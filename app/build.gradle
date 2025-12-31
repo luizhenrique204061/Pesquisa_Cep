@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.luiz.cep'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.luiz.cep"
         minSdk 24
-        targetSdk 34
-        versionCode 26
-        versionName "10.6"
+        targetSdk 35
+        versionCode 28
+        versionName "10.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

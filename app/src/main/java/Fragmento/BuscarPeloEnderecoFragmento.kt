@@ -26,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class BuscarPeloEnderecoFragmento : Fragment() {
     private lateinit var binding: FragmentBuscarPeloEnderecoBinding
-    lateinit var mAdview: AdView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +39,6 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        //carregarAnunciosBanner()
-
 
 
         binding.botaoLimpar.setOnClickListener {
@@ -132,14 +127,6 @@ class BuscarPeloEnderecoFragmento : Fragment() {
 
     }
 
-    private fun carregarAnunciosBanner() {
-        MobileAds.initialize(requireContext())
-
-        mAdview = binding.adview
-        val adRequest = AdRequest.Builder().build()
-        Log.i("Meu App", "Antes de carregar o anúncio")
-        mAdview.loadAd(adRequest)
-    }
 
     private fun recolherTeclado() {
         val inputMethodManager =
