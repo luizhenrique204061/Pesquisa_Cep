@@ -11,8 +11,8 @@ android {
         applicationId "com.luiz.cep"
         minSdk 24
         targetSdk 35
-        versionCode 28
-        versionName "10.7"
+        versionCode 29
+        versionName "10.8"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
